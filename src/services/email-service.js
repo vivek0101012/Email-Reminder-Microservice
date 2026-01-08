@@ -1,13 +1,22 @@
 const sender= require("../config/emailConfig")
 
-const sendBasicEmail=(mailfrom,mailto,mailSubject,mailBody)=>{
+const sendBasicEmail= async (mailfrom,mailto,mailSubject,mailBody)=>{
 
-    sender.sendMail({
+    try {
+        
+          const response= await  sender.sendMail({
         form:mailfrom,
         to:mailto,
         subject:mailSubject,
         text:mailBody
     })
+    console.log(response)
+    } catch (error) {
+        
+        console.log(error)
+    }
+
+
 
 }
 

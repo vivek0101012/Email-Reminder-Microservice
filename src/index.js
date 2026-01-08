@@ -11,8 +11,10 @@ const setupAndStartServer =()=>{
     app.listen(PORT,()=>{
         console.log(`server started at port ${PORT}`)
         sendBasicEmail(
-            'firstflight183@gmail.com',
-             'vivekmmmut2027@gmail.com',
+            'support@gmail.com',
+             'firstflight184@gmail.com',
+             "we are free now ",
+             " we are freeeeeeee"
             
         )
     })
