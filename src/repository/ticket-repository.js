@@ -1,11 +1,15 @@
 const { Op, where } = require('sequelize');
-const {NotificiationTicket}=require('../models/index')
 
 class TicketRepository {
+
+    constructor(NotificiationTicket){
+        this.NotificiationTicket=NotificiationTicket
+    }
+
     async create (data){
         try {
              
-            const response=await NotificiationTicket.create(data)
+            const response=await this.NotificiationTicket.create(data)
             return response;
 
         } catch (error) {
@@ -14,7 +18,8 @@ class TicketRepository {
     }    
     async getAll(){
         try {
-            const tickets=await NotificiationTicket.findAll();
+            const tickets=await this.NotificiationTicket.findAll();
+            console.log(tickets)
             return tickets;
         } catch (error) {
             throw error
@@ -23,35 +28,36 @@ class TicketRepository {
 
         async getPending( timestamp){
         try {
-            const tickets=await NotificiationTicket.findAll(
+            const tickets=await this.NotificiationTicket.findAll(
                 {
                     where:{
                         notificationTime:{
-                            [Op.lte]:timestamp
+                            [Op.gte]:timestamp
                         },
                            status: {
-                           [Op.in]: ["PENDING", "FAILED"]
+                           [Op.in]: ["PENDING", "RETRY"]
                         }
                     },
                         order:[['notificationTime','ASC']]
                 }
             );
+          
             return tickets;
         } catch (error) {
             throw error
         }
     }
 
-    async updateStatus(data,id){
+    async updateStatus(id,data){
         try {
-           const response= await NotificiationTicket.update(
+            await this.NotificiationTicket.update(
             data,
            { where:{
                 id:{[Op.eq]:id}
             }}
            ) 
+  
             
-           return response
         } catch (error) {
             throw error
             
