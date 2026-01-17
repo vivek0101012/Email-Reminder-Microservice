@@ -32,7 +32,7 @@ class TicketRepository {
                 {
                     where:{
                         notificationTime:{
-                            [Op.gte]:timestamp
+                            [Op.lte]:timestamp
                         },
                            status: {
                            [Op.in]: ["PENDING", "RETRY"]

@@ -12,12 +12,24 @@ class emailService {
         this.sender= sender
 
     }
- async sendBasicEmail(mailfrom,mailto,mailSubject,mailBody){
+
+  async create(data){
 
     try {
-        
+    
+    const response=await this.ticketRepository.create(data)
+    return response;
         
 
+    } catch (error) {
+
+        throw error
+        
+    }
+  } 
+ async sendBasicEmail(mailfrom,mailto,mailSubject,mailBody){
+
+    try {                
         const response= await this.sender.sendMail({
         from:mailfrom,
         to:mailto,

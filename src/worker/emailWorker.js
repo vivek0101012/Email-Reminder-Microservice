@@ -19,9 +19,8 @@ class EmailWorker {
          const timestamp= new Date();
          const Tickets=await  this.emailService.fetchPendingEmails(timestamp);
       
-             
-    const promises = Tickets.map(ticket => 
-        this.emailWorkflow.execute(ticket.dataValues)
+         const promises = Tickets.map(ticket => 
+         this.emailWorkflow.execute(ticket.dataValues)
     );
 
     

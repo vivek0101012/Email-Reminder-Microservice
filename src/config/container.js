@@ -6,6 +6,7 @@ const EmailWorkflow =require("../workflow//emailWorkflow")
 
 const EmailService = require ("../services/email-service");
 const Emailworker= require("../worker/emailWorker")
+
 const { EMAIL_ID } = require("./serverConfig");
 
 
@@ -18,5 +19,5 @@ module.exports ={
  emailService
  ,ticketRepository
  ,emailWorkflow
- ,emailWorker
+ ,emailWorker,
 }

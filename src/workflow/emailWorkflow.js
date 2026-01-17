@@ -12,6 +12,7 @@ class emailWorkflow{
     }
 
     async execute(ticket){
+        
 
         let result;
         try {
@@ -25,7 +26,6 @@ class emailWorkflow{
            content
 
         )
-            console.log("sent the email")
 
         result =  this.emailService.validateEmailResponse(info);        
             
@@ -35,7 +35,6 @@ class emailWorkflow{
        
     }
  
-    console.log(result);
     const data ={status:result.status}
     await this.emailService.updateStatus(ticket.id,data)
 
